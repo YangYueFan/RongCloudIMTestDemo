@@ -39,7 +39,6 @@
 		9518D4981F3C0E0F0024D08F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9518D4971F3C0E0F0024D08F /* UIKit.framework */; };
 		9518D49A1F3C0E140024D08F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9518D4991F3C0E140024D08F /* Photos.framework */; };
 		9518D49C1F3C0E190024D08F /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9518D49B1F3C0E190024D08F /* SafariServices.framework */; };
-		95E27D721F3C303000B2679B /* ChatTestCTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E27D711F3C303000B2679B /* ChatTestCTL.m */; };
 		95E27D751F3C5F1E00B2679B /* TestChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E27D741F3C5F1E00B2679B /* TestChatViewController.m */; };
 		95E27D781F3C607700B2679B /* ChatCTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E27D771F3C607700B2679B /* ChatCTL.m */; };
 		95E27D8B1F3C62C200B2679B /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E27D7B1F3C62C200B2679B /* RongCallKit.framework */; };
@@ -116,8 +115,6 @@
 		9518D4991F3C0E140024D08F /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		9518D49B1F3C0E190024D08F /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		9555A8751F3D48FB00E28C1D /* IMTestDome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IMTestDome.entitlements; sourceTree = "<group>"; };
-		95E27D701F3C303000B2679B /* ChatTestCTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTestCTL.h; sourceTree = "<group>"; };
-		95E27D711F3C303000B2679B /* ChatTestCTL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTestCTL.m; sourceTree = "<group>"; };
 		95E27D731F3C5F1E00B2679B /* TestChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestChatViewController.h; sourceTree = "<group>"; };
 		95E27D741F3C5F1E00B2679B /* TestChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChatViewController.m; sourceTree = "<group>"; };
 		95E27D761F3C607700B2679B /* ChatCTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCTL.h; sourceTree = "<group>"; };
@@ -264,8 +261,6 @@
 		9518D4691F3C09240024D08F /* IM */ = {
 			isa = PBXGroup;
 			children = (
-				95E27D701F3C303000B2679B /* ChatTestCTL.h */,
-				95E27D711F3C303000B2679B /* ChatTestCTL.m */,
 				95E27D731F3C5F1E00B2679B /* TestChatViewController.h */,
 				95E27D741F3C5F1E00B2679B /* TestChatViewController.m */,
 				95E27D761F3C607700B2679B /* ChatCTL.h */,
@@ -512,7 +507,6 @@
 				95E27D781F3C607700B2679B /* ChatCTL.m in Sources */,
 				9518D4341F3C04210024D08F /* AppDelegate.m in Sources */,
 				9518D4311F3C04210024D08F /* main.m in Sources */,
-				95E27D721F3C303000B2679B /* ChatTestCTL.m in Sources */,
 				95E27D751F3C5F1E00B2679B /* TestChatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

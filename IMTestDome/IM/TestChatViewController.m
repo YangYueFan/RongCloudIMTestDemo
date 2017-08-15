@@ -106,32 +106,27 @@
  您可以根据left数量来优化您的App体验和性能，比如收到大量消息时等待left为0再刷新UI。
  object为您在设置消息接收监听时的key值。
  */
-- (void)onReceived:(RCMessage *)message
-              left:(int)nLeft
-            object:(id)object {
+- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object {
     
     NSLog(@"%@",message.objectName);
     
     [self updataBadgeNumber];
     
+    
     //自定义本地推送
     NSString *body = nil;
     if ([message.objectName isEqualToString:@"RC:TxtMsg"]) {
-        body = @"您收到一条新消息";
+        RCTextMessage * textMessage =  (RCTextMessage *)message.content;
+        
+        body = textMessage.content;
     }else if ([message.objectName isEqualToString:@"RC:VcMsg"]){
-        body = @"您收到一条新语音";
+        body = @"[语音]";
     }else if ([message.objectName isEqualToString:@"RC:ImgMsg"]){
-        body = @"您收到一张图片";
+        body = @"[图片]";
     }else if ([message.objectName isEqualToString:@"RC:LBSMsg"]){
-        body = @"您收到新的位置";
+        body = @"[位置]";
     }
-    [self notif:message body:body];
-    
-//    if ([message.content isMemberOfClass:[RCTextMessage class]]) {
-//        RCTextMessage *testMessage = (RCTextMessage *)message.content;
-//        NSLog(@"消息内容：%@", testMessage.content);
-//        
-//    }
+    [self notif:message body:[NSString stringWithFormat:@"%@:%@",message.targetId,body]];
     
     //震动
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);

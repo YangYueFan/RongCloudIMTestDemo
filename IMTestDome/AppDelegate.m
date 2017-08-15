@@ -51,7 +51,7 @@
     
     if (launchOptions) {
         NSDictionary *remoteNotificationUserInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        NSLog(@"%@",remoteNotificationUserInfo);
+        NSLog(@"remoteNotificationUserInfo %@",remoteNotificationUserInfo);
     }
     
     return YES;
@@ -231,7 +231,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // userInfo为远程推送的内容
     
-    NSLog(@"%@",userInfo);
+    NSLog(@"userInfo %@",userInfo);
 }
 
 
