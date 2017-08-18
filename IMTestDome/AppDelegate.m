@@ -10,8 +10,8 @@
 
 #import "TestChatViewController.h"
 
-#import <RongIMLib/RongIMLib.h>
-
+//#import <RongIMLib/RongIMLib.h>
+#import <RongIMKit/RongIMKit.h>
 
 
 //
@@ -44,9 +44,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
+     [self IMInit];
+    
     [self registerPush];
     
-    [self IMInit];
+   
     
     
     if (launchOptions) {
@@ -98,8 +101,8 @@
 -(void)IMInit{
     
     //请使用您之前从融云开发者控制台注册得到的 App Key，通过RCIM的单例，传入 initWithAppKey: 方法，初始化 SDK。
-    
-    [[RCIMClient sharedRCIMClient] initWithAppKey:RongAppKey];
+    [[RCIM sharedRCIM] initWithAppKey:RongAppKey];
+//    [[RCIMClient sharedRCIMClient] initWithAppKey:RongAppKey];
     [RCIM sharedRCIM].enableMessageAttachUserInfo = YES;
     /*
      将您在上一步获取到的 Token，通过 RCIMClient 的单例，传入 -connectWithToken:success:error:tokenIncorrect: 方法，即可建立与服务器的连接。
@@ -143,8 +146,8 @@
     [[RCIM sharedRCIM] setReceiveMessageDelegate:self];
     //是否关闭本地通知，默认是打开的
     [[RCIM sharedRCIM] setDisableMessageNotificaiton:NO];
-    //设置Log级别，开发阶段打印详细log
-    [RCIMClient sharedRCIMClient].logLevel = RC_Log_Level_Error;
+    //设置Log级别，开发阶段打印详细logsetReceiveMessageDelegate
+//    [RCIMClient sharedRCIMClient].logLevel = RC_Log_Level_Error;
     
 }
 

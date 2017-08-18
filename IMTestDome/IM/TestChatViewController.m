@@ -17,7 +17,7 @@
 #define KChatServerID @"KEFU150269262853429"
 #define KSystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
 
-@interface TestChatViewController ()<RCIMClientReceiveMessageDelegate,UNUserNotificationCenterDelegate>
+@interface TestChatViewController ()<RCIMReceiveMessageDelegate,UNUserNotificationCenterDelegate>
 
 @end
 
@@ -39,7 +39,7 @@
                                           @(ConversationType_GROUP)]];
     
     // 设置消息接收监听
-    [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
+    [[RCIM sharedRCIM] setReceiveMessageDelegate:self];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"ToUser1" style:UIBarButtonItemStylePlain target:self action:@selector(newChar)];
     
@@ -94,6 +94,11 @@
 }
 
 
+- (void)onRCIMReceiveMessage:(RCMessage *)message
+                        left:(int)left{
+    [self updataBadgeNumber];
+}
+
 /*!
  接收消息的回调方法
  
@@ -106,39 +111,39 @@
  您可以根据left数量来优化您的App体验和性能，比如收到大量消息时等待left为0再刷新UI。
  object为您在设置消息接收监听时的key值。
  */
-- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object {
-    
-    NSLog(@"%@",message.objectName);
-    
-    [self updataBadgeNumber];
-    
-    
-    //自定义本地推送
-    NSString *body = nil;
-    if ([message.objectName isEqualToString:@"RC:TxtMsg"]) {
-        RCTextMessage * textMessage =  (RCTextMessage *)message.content;
-        
-        body = textMessage.content;
-    }else if ([message.objectName isEqualToString:@"RC:VcMsg"]){
-        body = @"[语音]";
-    }else if ([message.objectName isEqualToString:@"RC:ImgMsg"]){
-        body = @"[图片]";
-    }else if ([message.objectName isEqualToString:@"RC:LBSMsg"]){
-        body = @"[位置]";
-    }
-    [self notif:message body:[NSString stringWithFormat:@"%@:%@",message.targetId,body]];
-    
-    //震动
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    //通知刷新聊天页面
-    [[NSNotificationCenter defaultCenter] postNotificationName:message.targetId object:message];
-    NSLog(@"还剩余的未接收的消息数：%d", nLeft);
-    
-    if (nLeft == 0) {
-        //刷新页面
-        [self refreshConversationTableViewIfNeeded];  
-    }
-}
+//- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object {
+//    
+//    NSLog(@"%@",message.objectName);
+//    
+//    [self updataBadgeNumber];
+//
+//    
+//    //自定义本地推送
+//    NSString *body = nil;
+//    if ([message.objectName isEqualToString:@"RC:TxtMsg"]) {
+//        RCTextMessage * textMessage =  (RCTextMessage *)message.content;
+//        
+//        body = textMessage.content;
+//    }else if ([message.objectName isEqualToString:@"RC:VcMsg"]){
+//        body = @"[语音]";
+//    }else if ([message.objectName isEqualToString:@"RC:ImgMsg"]){
+//        body = @"[图片]";
+//    }else if ([message.objectName isEqualToString:@"RC:LBSMsg"]){
+//        body = @"[位置]";
+//    }
+//    [self notif:message body:[NSString stringWithFormat:@"%@:%@",message.targetId,body]];
+//    
+//    //震动
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//    //通知刷新聊天页面
+//    [[NSNotificationCenter defaultCenter] postNotificationName:message.targetId object:message];
+//    NSLog(@"还剩余的未接收的消息数：%d", nLeft);
+//    
+//    if (nLeft == 0) {
+//        //刷新页面
+//        [self refreshConversationTableViewIfNeeded];  
+//    }
+//}
 
 #pragma mark - 更新BadgeNumber
 -(void)updataBadgeNumber{
